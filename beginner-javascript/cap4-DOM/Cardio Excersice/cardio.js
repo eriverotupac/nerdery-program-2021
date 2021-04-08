@@ -85,10 +85,26 @@ divCards.appendChild(myCard2);
 divCards.appendChild(myCard3);
 divCards.appendChild(myCard4);
 // put the div into the DOM just before the wrapper element
-document.body.insertAdjacentElement('afterbegin', divCards);
+myDiv.insertAdjacentElement('beforebegin', divCards);
+
+
 
 // Bonus, put a delete Button on each card so when you click it, the whole card is removed
 
+//create button
+const myButton = document.createElement('button');
+myButton.textContent = 'Delete';
+
+//add button to each card
+const cardList = document.querySelectorAll('.playerCard');
+cardList.forEach(pcard => pcard.appendChild(myButton.cloneNode(true)));
+
 // select all the buttons!
+const allButtons = document.querySelectorAll('button');
+
 // make out delete function
+function removeButton() {
+    this.parentNode.remove();
+}
 // loop over them and attach a listener
+allButtons.forEach(btn => btn.addEventListener('click', removeButton));
